@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .heart {
+            position: relative;
+            width: 100px;
+            height: 90px;
+        }
+
+        .heart:before,
+        .heart:after {
+            position: absolute;
+            content: "";
+            left: 50px;
+            top: 0;
+            width: 50px;
+            height: 80px;
+            background: red;
+            border-radius: 50px 50px 0 0;
+            transform-origin: left top;
+            /* 设置旋转中心 */
+        }
+
+        .heart:after {
+            left: 0;
+            transform: rotate(45deg);
+            /* 只旋转一个部分 */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="heart"></div>
+    <script>
+        const heart = document.querySelector('.heart');
+        let angle = 0; // 旋转角度初始值
+        // 每秒旋转36度（360度/秒）
+        setInterval(() => {
+            angle = (angle + 3) % 360; // 每次增加3度，并确保角度在0到360之间循环
+            heart.style.transform = `rotate(${angle}deg)`; // 应用旋转变换到元素上
+        }, 1000 / 60); // 每秒60帧，约16.67毫秒更新一次位置，以达到平滑效果。
+    </script>
+</body>
+
+</html>
